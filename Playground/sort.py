@@ -45,7 +45,7 @@ for i in range(0, iters):
                     max_q = q
                     action = j
         else:
-            action = np.random.randint(0, numBlocks)
+            action = np.random.randint(numBlocks)
             temp_inpt = np.append(state, action)
             temp_inpt = temp_inpt.reshape(1, (numBlocks+1)*2+1)
             max_q = model.predict(temp_inpt)

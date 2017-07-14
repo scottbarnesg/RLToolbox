@@ -26,10 +26,12 @@ numobjs = 1  # Number of objects
 iters = 10000  # Number of iterations
 gamma = 0.99  # discount factor
 plt.hold(False)
+inpt = np.reshape(np.zeros(5), (1, 5))
+trgt = np.reshape(np.zeros(1), (1, 1))
 for i in range(0, iters):
     # Set up initial state
-    inpt = np.reshape(np.zeros(5), (1, 5))
-    trgt = np.reshape(np.zeros(1), (1, 1))
+    # inpt = np.append(inpt, np.reshape(np.zeros(5), (1, 5)), axis=0)
+    # trgt = np.append(trgt, np.reshape(np.zeros(1), (1, 1)), axis=0)
     x_init = np.random.uniform(0, space[0], size=numobjs)
     y_init = np.random.uniform(0, space[1], size=numobjs)
     objs = np.append(x_init, y_init, axis=0)
@@ -67,12 +69,10 @@ for i in range(0, iters):
             count = count+1
             run = 'false'
             rwd = -1
-            print(i)
-        elif(round(actr[0]) == round(objs[0, 0]) and round(actr[0]) == round(objs[0, 0])):
+        elif(round(actr[0]) == round(objs[0, 0]) and round(actr[1]) == round(objs[0, 1])):
             count = count+1
             run = 'false'
             rwd = 1
-            print(i)
         else:
             rwd = -0.01
         # Plot Movement
@@ -88,10 +88,15 @@ for i in range(0, iters):
         if(run == 'false'):
             # if(count-i-1 >= 0):
                 # for j in range(count, count-i-1, -1):
-            for j in range(0, count):
-                model.fit(np.reshape(inpt[j, :], (1, 5)), trgt[j, :], epochs=1)
+            for j in range(0, 100):  # Experience Replay
+                index = np.random.randint(inpt.shape[0])
+                s = np.reshape(inpt[index, :], (1, 5))
+                t = np.reshape(trgt[index, :], (1, 1))
+                model.fit(s, t, epochs=1)
+                # model.fit(np.reshape(inpt[j, :], (1, 5)), trgt[j, :], epochs=1)
             # else:
             #    for j in range(count, 0, -1):
             #        model.fit(np.reshape(inpt[j, :], (1, 5)), trgt[j, :], epochs=1)
-
+            print(i)
+            # time.sleep(0.01)
 model.save('testmodel4.h5')

@@ -12,3 +12,4 @@ class SimpleMove:
 
 class Sort:
     def move(position, goal):
+        return 0
