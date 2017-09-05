@@ -7,7 +7,11 @@ from keras.layers import Dense, Activation
 from keras.callbacks import History
 from MoveRobot import SimpleMove
 
+<<<<<<< HEAD
 model = load_model('testmodel4.h5')
+=======
+model = load_model('July16_Model1.h5')
+>>>>>>> fbd0af3803fe5f7d5e975dbd2f71ed02300487ea
 # Define Simulation Paramaters
 space = (20, 20)  # Size of workspace
 numobjs = 1  # Number of objects

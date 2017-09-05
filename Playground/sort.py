@@ -5,11 +5,17 @@ import time
 from keras.models import Sequential, load_model
 from keras.layers import Dense, Activation
 from keras.callbacks import History
+<<<<<<< HEAD
 from MoveActor import SimpleMove
 from objects import Blocks
 from objects import Robot
 from sortreward import SortReward as reward
 from moverobot import Sort
+=======
+from objects import Blocks
+from objects import Robot
+from sortreward import SortReward as reward
+>>>>>>> fbd0af3803fe5f7d5e975dbd2f71ed02300487ea
 
 
 # Set simulation paramaters
@@ -52,6 +58,13 @@ for i in range(0, iters):
 
         # Assign Reward
         rwd = reward.color(blocks[i], blocks, numBlocks)
+<<<<<<< HEAD
 
         # Move Robot
         Sort.move
+=======
+        # Select Goal position
+
+        # Move Robot
+        Robot.update_pos(goal)
+>>>>>>> fbd0af3803fe5f7d5e975dbd2f71ed02300487ea

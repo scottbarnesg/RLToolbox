@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+from objects import Robot
+
+
+>>>>>>> fbd0af3803fe5f7d5e975dbd2f71ed02300487ea
 class SimpleMove:
     def move(actor, action):
         if(action == 0):  # Up
@@ -11,5 +17,9 @@ class SimpleMove:
         return actor
 
 class Sort:
+<<<<<<< HEAD
     def move(position, goal):
+=======
+    def move(self, goal):  # Straight line between objects
+>>>>>>> fbd0af3803fe5f7d5e975dbd2f71ed02300487ea
         return 0

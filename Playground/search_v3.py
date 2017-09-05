@@ -1,18 +1,8 @@
 
-<<<<<<< HEAD
-import matplotlib.pyplot as plt
-import numpy as np
-import math
-import time
-from keras.models import Sequential
-from keras.layers import Dense, Activation
-from keras.callbacks import History
-=======
 # import matplotlib.pyplot as plt
 import numpy as np
 from keras.models import Sequential
 from keras.layers import Dense, Activation
->>>>>>> fbd0af3803fe5f7d5e975dbd2f71ed02300487ea
 from MoveRobot import SimpleMove
 from keras import optimizers
 
@@ -26,15 +16,6 @@ model.add(Activation('linear'))
 model.summary()
 sgd = optimizers.SGD(lr=0.001)
 model.compile(loss='mean_squared_error',
-<<<<<<< HEAD
-    optimizer='SGD')
-# Define Simulation Paramaters
-space = (20, 20)  # Size of workspace
-numobjs = 1  # Number of objects
-iters = 10000  # Number of iterations
-gamma = 0.99  # discount factor
-plt.hold(False)
-=======
     optimizer=sgd)
 # Define Simulation Paramaters
 space = (20, 20)  # Size of workspace
@@ -42,7 +23,6 @@ numobjs = 1  # Number of objects
 iters = 100000 # Number of iterations
 gamma = 0.99  # discount factor
 # plt.hold(False)
->>>>>>> fbd0af3803fe5f7d5e975dbd2f71ed02300487ea
 inpt = np.reshape(np.zeros(5), (1, 5))
 trgt = np.reshape(np.zeros(1), (1, 1))
 for i in range(0, iters):
@@ -105,32 +85,18 @@ for i in range(0, iters):
         if(run == 'false'):
             # if(count-i-1 >= 0):
                 # for j in range(count, count-i-1, -1):
-<<<<<<< HEAD
-            for j in range(0, 100):  # Experience Replay
-                index = np.random.randint(inpt.shape[0])
-                s = np.reshape(inpt[index, :], (1, 5))
-                t = np.reshape(trgt[index, :], (1, 1))
-                model.fit(s, t, epochs=1)
-=======
             for j in range(0, i+1):  # Experience Replay
                 index = np.random.randint(inpt.shape[0])
                 s = np.reshape(inpt[index, :], (1, 5))
                 t = np.reshape(trgt[index, :], (1, 1))
                 model.fit(s, t, epochs=1, verbose=0)
->>>>>>> fbd0af3803fe5f7d5e975dbd2f71ed02300487ea
                 # model.fit(np.reshape(inpt[j, :], (1, 5)), trgt[j, :], epochs=1)
             # else:
             #    for j in range(count, 0, -1):
             #        model.fit(np.reshape(inpt[j, :], (1, 5)), trgt[j, :], epochs=1)
-<<<<<<< HEAD
-            print(i)
-            # time.sleep(0.01)
-model.save('testmodel4.h5')
-=======
             # print(i)
             # time.sleep(0.01)
             if(i % 10000 == 0):
                 print(i)
-                model.save('July24_Model1.h5')
-model.save('July24_Model1.h5')
->>>>>>> fbd0af3803fe5f7d5e975dbd2f71ed02300487ea
+                model.save('July16_Model2.h5')
+model.save('July16_Model2.h5')
