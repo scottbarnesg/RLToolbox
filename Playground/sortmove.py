@@ -46,6 +46,10 @@ class HumanInput:
             reward.append(1)
         return action, reward, grid
 
+    def grid_to_point(grid):
+        point = [(grid[2]+grid[0])/2, (grid[3]+grid[1])/2]
+        return point
+
 
 class Train:
     def imitation(net, action, reward):
