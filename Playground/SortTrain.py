@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 
 # Define Workspace and objects
 workspace = (100, 100)
-numBlocks = 10
+numBlocks = 5
 numColors = 3
 numSizes = 1
 # Create model
@@ -25,13 +25,21 @@ for i in range(0, numBlocks):
         color = 3
     else:
         print('Error: Color not identified')
-    obj.append(blocks[i].pos)  # Need to figure out how to append correctly
-    # obj.append(color)
+    obj.append(blocks[i].pos[0])
+    obj.append(blocks[i].pos[1])   # Need to figure out how to append correctly
+    obj.append(color)
 
 obj = np.asarray(obj)
-obj = np.reshape(obj, (numBlocks, 2))
+obj = np.reshape(obj, (numBlocks, 3))
 # Plot Initial Positions
-plt.plot(obj[:, 0], obj[:, 1], 'o')
+for i in range(0, numBlocks):
+    if (obj[i, 2] == 1):
+        plt.plot(obj[i, 0], obj[i, 1], 'ro')
+    elif (obj[i, 2] == 2):
+        plt.plot(obj[i, 0], obj[i, 1], 'bo')
+    elif (obj[i, 2] == 3):
+        plt.plot(obj[i, 0], obj[i, 1], 'go')
+
 plt.axis([0, workspace[0], 0, workspace[1]])
 plt.show(block=False)
 plt.pause(0.1)
@@ -43,17 +51,24 @@ current_pos = []
 target = [0, 0]
 for i in range(0, numBlocks):
     grid = np.array([0, 0, workspace[0], workspace[1]])
-    current_pos.append(obj[i, :])
+    current_pos.append(obj[i, 0:1])
     target[0] = float(input("X-Coordinate: "))
     target[1] = float(input("Y-Coordinate: "))
     # Select Grid and Point
     [action, reward, grid] = HumanInput.human_moveto(target, grid, 7)
-    obj[i, :] = HumanInput.grid_to_point(grid)
+    obj[i, 0:2] = HumanInput.grid_to_point(grid)
     a.append(action)
     r.append(reward)
     # Plot Movement
     plt.clf()
-    plt.plot(obj[:, 0], obj[:, 1], 'o')
+    for i in range(0, numBlocks):
+        if (obj[i, 2] == 1):
+            plt.plot(obj[i, 0], obj[i, 1], 'ro')
+        elif (obj[i, 2] == 2):
+            plt.plot(obj[i, 0], obj[i, 1], 'bo')
+        elif (obj[i, 2] == 3):
+            plt.plot(obj[i, 0], obj[i, 1], 'go')
+
     plt.axis([0, workspace[0], 0, workspace[1]])
     plt.show(block=False)
     plt.pause(0.1)
