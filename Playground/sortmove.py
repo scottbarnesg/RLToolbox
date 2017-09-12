@@ -27,7 +27,7 @@ class Move:
 
 
 class HumanInput:
-    def human_moveto(target, grid, iters):
+    def human_moveto(target, grid, iters, rwd):
         action = []
         reward = []
         for i in range(0, iters-1):
@@ -43,7 +43,7 @@ class HumanInput:
                     quad = 2
             grid = Move.moveto(quad, grid)
             action.append(quad)
-            reward.append(1)
+            reward.append(rwd-0.01*i*rwd)
         return action, reward, grid
 
     def grid_to_point(grid):

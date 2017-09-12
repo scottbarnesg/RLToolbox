@@ -54,8 +54,9 @@ for i in range(0, numBlocks):
     current_pos.append(obj[i, 0:1])
     target[0] = float(input("X-Coordinate: "))
     target[1] = float(input("Y-Coordinate: "))
+    rwd = int(input("Correct (1) or Incorrect (-1): "))
     # Select Grid and Point
-    [action, reward, grid] = HumanInput.human_moveto(target, grid, 7)
+    [action, reward, grid] = HumanInput.human_moveto(target, grid, 7, rwd)
     obj[i, 0:2] = HumanInput.grid_to_point(grid)
     a.append(action)
     r.append(reward)
